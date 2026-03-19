@@ -141,3 +141,20 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ 
     );
 });
 Textarea.displayName = "Textarea";
+
+// ==========================
+// GlassCard
+// ==========================
+export interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+    variant?: "default" | "raised" | "inset";
+}
+
+export function GlassCard({ variant = "default", className, ...props }: GlassCardProps) {
+    const variantClasses = {
+        default: "bg-white/40 dark:bg-black/40 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-[10px] shadow-sm",
+        raised: "bg-white/40 dark:bg-black/40 backdrop-blur-xl rounded-xl shadow-md hover:shadow-lg transition-all duration-200",
+        inset: "bg-white/20 dark:bg-black/20 backdrop-blur-xl border border-black/5 dark:border-white/5 rounded-[16px]",
+    };
+
+    return <div className={cn(variantClasses[variant], className)} {...props} />;
+}
